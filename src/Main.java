@@ -1,5 +1,6 @@
 import model.Artist;
 import model.DataSource;
+import model.SongArtist;
 
 import java.util.List;
 
@@ -15,13 +16,20 @@ public class Main {
             System.out.println("No artists");
             return;
         }
-        for(Artist artist: artists){
-            System.out.println("ID = " + artist.getId() + ", Name = " + artist.getName());
-        }
+        artists.forEach(artist -> System.out.println("ID = " + artist.getId() + ", Name = " + artist.getName()));
+
         List<String> albumsForArtists = dataSource.queryAlbumsForArtists("Pink Floyd", DataSource.ORDER_BY_ASC);
-        for(String album: albumsForArtists){
-            System.out.println(album);
+        albumsForArtists.forEach(album -> System.out.println(album));
+
+        List<SongArtist> songArtists = dataSource.queryArtistsForSong("Go Your Own Way", DataSource.ORDER_BY_ASC);
+        if(songArtists == null){
+            System.out.println("Cant find artist for this song");
+            return;
         }
+        songArtists.forEach(artist -> System.out.println("Artist name = " + artist.getArtistName() +
+                " ,album = " + artist.getAlbumName() +
+                " ,track = " + artist.getTrack()));
+
         dataSource.close();
     }
 }

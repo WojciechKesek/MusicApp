@@ -1,5 +1,6 @@
 package model;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -114,6 +115,36 @@ public class DataSource {
                 albums.add(results.getString(1));
             }
             return albums;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public List<SongArtist> queryArtistsForSong(String songName, int sortOrder){
+        StringBuilder sb = new StringBuilder(QUERY_ARTIST_FOR_SONG_START);
+        sb.append(songName);
+        sb.append("\"");
+        if(sortOrder != ORDER_BY_NONE){
+            sb.append(QUERY_ARTIST_FOR_SONG_SORT);
+            if(sortOrder == ORDER_BY_DESC){
+                sb.append("DESC");
+            }else {
+                sb.append("ASC");
+            }
+        }
+        System.out.println("SQL Statment: "+ sb.toString());
+        try (Statement statemen = conn.createStatement();
+            ResultSet results = statemen.executeQuery(sb.toString())){
+            List<SongArtist> songArtists = new ArrayList<>();
+            while(results.next()){
+                SongArtist songArtist = new SongArtist();
+                songArtist.setArtistName(results.getString(1));
+                songArtist.setAlbumName(results.getString(2));
+                songArtist.setTrack(results.getInt(3));
+                songArtists.add(songArtist);
+            }
+            return songArtists;
         }catch (SQLException e){
             System.out.println(e.getMessage());
             return null;
