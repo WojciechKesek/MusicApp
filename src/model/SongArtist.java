@@ -10,7 +10,7 @@ public class SongArtist {
         return artistName;
     }
 
-    public void setArtistName(String artistName) {
+    protected void setArtistName(String artistName) {
         this.artistName = artistName;
     }
 
@@ -18,7 +18,7 @@ public class SongArtist {
         return albumName;
     }
 
-    public void setAlbumName(String albumName) {
+    protected void setAlbumName(String albumName) {
         this.albumName = albumName;
     }
 
@@ -26,7 +26,7 @@ public class SongArtist {
         return track;
     }
 
-    public void setTrack(int track) {
+    protected void setTrack(int track) {
         this.track = track;
     }
 }

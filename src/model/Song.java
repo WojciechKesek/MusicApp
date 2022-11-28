@@ -10,7 +10,7 @@ public class Song {
         return id;
     }
 
-    public void setId(int id) {
+    protected void setId(int id) {
         this.id = id;
     }
 
@@ -18,7 +18,7 @@ public class Song {
         return track;
     }
 
-    public void setTrack(int track) {
+    protected void setTrack(int track) {
         this.track = track;
     }
 
@@ -26,7 +26,7 @@ public class Song {
         return name;
     }
 
-    public void setName(String name) {
+    protected void setName(String name) {
         this.name = name;
     }
 
@@ -34,7 +34,7 @@ public class Song {
         return albumId;
     }
 
-    public void setAlbumId(int albumId) {
+    protected void setAlbumId(int albumId) {
         this.albumId = albumId;
     }
 }

@@ -5,11 +5,11 @@ public class Album {
     private String name;
     private int artistId;
 
-    public int getId() {
+    protected int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    protected void setId(int id) {
         this.id = id;
     }
 
@@ -17,7 +17,7 @@ public class Album {
         return name;
     }
 
-    public void setName(String name) {
+    protected void setName(String name) {
         this.name = name;
     }
 
@@ -25,7 +25,7 @@ public class Album {
         return artistId;
     }
 
-    public void setArtistId(int artistId) {
+    protected void setArtistId(int artistId) {
         this.artistId = artistId;
     }
 }

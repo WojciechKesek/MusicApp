@@ -21,7 +21,8 @@ public class Main {
             System.out.println("\tShow albumns of specific artist -> Press 2");
             System.out.println("\tShow albumns which contain song -> Press 3");
             System.out.println("\tShow how many... -> Press 4");
-            System.out.println("\tExit -> Press 5");
+            System.out.println("\tAdd song-> Press 5");
+            System.out.println("\tExit -> Press 6");
 
             System.out.println();
             switch (scanner.nextLine()){
@@ -65,13 +66,26 @@ public class Main {
                             break;
                     }
                     break;
-                case "5": System.out.println("Good bye");
+                case "5":
+                    System.out.println("Please enter album artist");
+                    String artist = scanner.nextLine();
+                    System.out.println("Please enter song album");
+                    String album = scanner.nextLine();
+                    System.out.println("Please enter song name");
+                    String songName = scanner.nextLine();
+                    System.out.println("Please enter song track number");
+                    int trackNumber = scanner.nextInt();
+                    scanner.nextLine();
+                    dataSource.insertSong(songName, artist, album, trackNumber);
+                    break;
+                case "6": System.out.println("Good bye");
                     on = false;
                     break;
                 default:
                     System.out.println("Wrong input");
             }
         }
+        scanner.close();
 //        List<SongArtist> songArtists = dataSource.queryArtistsForSong("Go Your Own Way", DataSource.ORDER_BY_ASC);
 //        if(songArtists == null){
 //            System.out.println("Cant find artist for this song");
@@ -82,6 +96,9 @@ public class Main {
 //                " ,track = " + artist.getTrack()));
 //        dataSource.querySongsMetadata();
 //        dataSource.createViewForSongArtists();
-//        dataSource.close();
+
+
+
+        dataSource.close();
     }
 }
